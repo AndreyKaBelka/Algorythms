@@ -25,7 +25,7 @@ public class BackPolish {
         for (String var : data) {
             if (Operations.isInputStringOperation(var)) {
                 Operations operation = Operations.getByChar(var);
-                stack.addFirst(operation.getOperationFunc().oper(stack.pop(), stack.pop()));
+                stack.addLast(operation.getOperationFunc().oper(stack.pop(), stack.pop()));
             } else {
                 stack.addLast(Double.valueOf(var));
             }
