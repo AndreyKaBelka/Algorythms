@@ -1,5 +1,5 @@
 package operationsAlg;
 
 public abstract class AbstractAlgo {
-    abstract Boolean isBracketCorrect() throws Exception;
+    public abstract Boolean isBracketCorrect() throws Exception;
 }

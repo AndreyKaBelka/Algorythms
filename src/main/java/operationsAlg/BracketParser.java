@@ -1,15 +1,21 @@
 package operationsAlg;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
 
 public class BracketParser extends AbstractAlgo {
-    private String bracketDict = "{[()]}";
-    private Map<Character, Integer> bracketCounter;
+    private final HashMap<Character, Character> dict = new HashMap<>() {
+        {
+            put(']', '[');
+            put('}', '{');
+            put(')', '(');
+        }
+    };
+    private LinkedList<Character> stack;
     private String data;
 
     public BracketParser() {
-        bracketCounter = new HashMap<Character, Integer>();
+        stack = new LinkedList<>();
         data = null;
     }
 
@@ -25,18 +31,19 @@ public class BracketParser extends AbstractAlgo {
     }
 
     @Override
-    Boolean isBracketCorrect() throws Exception {
+    public Boolean isBracketCorrect() throws Exception {
         if (getData().isEmpty()) {
             throw new Exception("Wrong data, please require correct data");
         }
         for (char ch : getData().toCharArray()) {
-            if (bracketDict.indexOf(ch) != -1) {
-                bracketCounter.put(ch, bracketCounter.getOrDefault(ch, 0) + 1);
-            }
-        }
-        for (int i = 0; i < bracketDict.length() / 2; i++) {
-            if (!bracketCounter.getOrDefault(bracketDict.charAt(i), 0).equals(bracketCounter.getOrDefault(bracketDict.charAt(bracketDict.length() - 1 - i), 0))){
-                return false;
+            if (dict.containsValue(ch)) {
+                stack.push(ch);
+            } else if (dict.containsKey(ch)) {
+                if (stack.size() == 0 || dict.get(ch) != stack.pop()){
+                    return false;
+                }
+            } else {
+                throw new Exception("Wrong data, please require correct data");
             }
         }
         return true;
