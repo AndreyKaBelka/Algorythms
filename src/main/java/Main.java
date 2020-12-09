@@ -1,10 +1,10 @@
 import operationsAlg.BackPolish;
 
 public class Main {
-    public static void main(String[] args) {
-        String data = "6 5 * 9 +";
-        BackPolish backPolish = new BackPolish();
-        backPolish.setData(data);
-        System.out.println(backPolish.calc());
+    public static void main(String[] args) throws Exception {
+        String data = "2 3 5 * + 8 9 * + 4 -";
+        BackPolish bracketParser = new BackPolish();
+        bracketParser.setData(data);
+        System.out.println(bracketParser.calc());
     }
 }
