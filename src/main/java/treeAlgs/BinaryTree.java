@@ -137,5 +137,6 @@ public class BinaryTree {
         binaryTree.addNode(70, "j");
         binaryTree.addNode(150, "k");
         binaryTree.deleteNode(15);
+        int i = 11;
     }
 }
